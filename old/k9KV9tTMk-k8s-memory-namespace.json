@@ -1,0 +1,388 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "canDelete": true,
+    "slug": "k8s-memory-namespace",
+    "url": "/d/k9KV9tTMk/k8s-memory-namespace",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2022-06-24T10:49:31Z",
+    "updated": "2022-06-24T11:12:09Z",
+    "updatedBy": "diegoluisi",
+    "createdBy": "diegoluisi",
+    "version": 2,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 17,
+    "folderUid": "ELuW2N3nk",
+    "folderTitle": "Kubernetes",
+    "folderUrl": "/dashboards/f/ELuW2N3nk/kubernetes",
+    "provisioned": false,
+    "provisionedExternalId": "",
+    "annotationsPermissions": {
+      "dashboard": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      },
+      "organization": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      }
+    },
+    "isPublic": false
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "description": "Showing memory in namespace, showing memory in nodes, and showing memory all cluster pods",
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "gnetId": 13421,
+    "graphTooltip": 0,
+    "id": 31,
+    "iteration": 1656069114764,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "CGTEeVqnk"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "decimals": 3,
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 90
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 8,
+        "options": {
+          "displayMode": "lcd",
+          "minVizHeight": 10,
+          "minVizWidth": 0,
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true
+        },
+        "pluginVersion": "9.0.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "CGTEeVqnk"
+            },
+            "expr": "sum by (instance) (100 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100))",
+            "format": "time_series",
+            "instant": false,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Memory load of nodes",
+        "type": "bargauge"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "CGTEeVqnk"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "decimals": 3,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 5000
+                }
+              ]
+            },
+            "unit": "decmbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 18,
+          "x": 0,
+          "y": 8
+        },
+        "id": 4,
+        "options": {
+          "displayMode": "lcd",
+          "minVizHeight": 10,
+          "minVizWidth": 0,
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true
+        },
+        "pluginVersion": "9.0.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "CGTEeVqnk"
+            },
+            "expr": "sum by(namespace) (container_memory_usage_bytes{container!=\"pod\",image!=\"\"})/1048576",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Namespaces memory usage",
+        "type": "bargauge"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "CGTEeVqnk"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "decimals": 3,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 512
+                },
+                {
+                  "color": "red",
+                  "value": 1024
+                }
+              ]
+            },
+            "unit": "decmbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 18,
+          "x": 0,
+          "y": 20
+        },
+        "id": 6,
+        "options": {
+          "displayMode": "lcd",
+          "minVizHeight": 10,
+          "minVizWidth": 0,
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true
+        },
+        "pluginVersion": "9.0.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "CGTEeVqnk"
+            },
+            "expr": "sum by(pod,namespace) (container_memory_working_set_bytes{container!=\"pod\",image!=\"\",namespace=\"$namespace\"})/1048576",
+            "instant": false,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Memory usage in namespace ",
+        "type": "bargauge"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "CGTEeVqnk"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "filterable": false
+            },
+            "decimals": 3,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 512
+                },
+                {
+                  "color": "red",
+                  "value": 1024
+                }
+              ]
+            },
+            "unit": "decmbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 18,
+          "w": 18,
+          "x": 0,
+          "y": 32
+        },
+        "id": 2,
+        "options": {
+          "displayMode": "lcd",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": false
+        },
+        "pluginVersion": "7.2.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "CGTEeVqnk"
+            },
+            "expr": "sum by(pod,namespace) (container_memory_working_set_bytes{container!=\"pod\",image!=\"\"})/1048576",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "All pod memory usage",
+        "transformations": [],
+        "type": "bargauge"
+      }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 36,
+    "style": "dark",
+    "tags": [
+      "kubernetes",
+      "namespace",
+      "memory"
+    ],
+    "templating": {
+      "list": [
+        {
+          "current": {},
+          "datasource": {
+            "type": "prometheus",
+            "uid": "CGTEeVqnk"
+          },
+          "definition": "query_result(kube_namespace_labels)",
+          "hide": 0,
+          "includeAll": false,
+          "multi": false,
+          "name": "namespace",
+          "options": [],
+          "query": {
+            "query": "query_result(kube_namespace_labels)",
+            "refId": "prometheus-namespace-Variable-Query"
+          },
+          "refresh": 1,
+          "regex": "/.*namespace=\"([^\"]*).*/",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "k8s Memory namespace",
+    "uid": "k9KV9tTMk",
+    "version": 2,
+    "weekStart": ""
+  }
+}
