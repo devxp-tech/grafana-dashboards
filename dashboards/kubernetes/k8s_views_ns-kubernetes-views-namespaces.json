@@ -108,7 +108,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\", image!=\"\"}[$__rate_interval])) / sum(machine_cpu_cores)",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\", image!=\"\"}[$__interval])) / sum(machine_cpu_cores)",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -440,7 +440,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\"}[$__rate_interval]))",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\"}[$__interval]))",
           "interval": "",
           "legendFormat": "Real",
           "range": true,
@@ -687,7 +687,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\", image!=\"\"}[$__rate_interval])) by (pod)",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\", image!=\"\"}[$__interval])) by (pod)",
           "interval": "$resolution",
           "legendFormat": "{{ pod }}",
           "refId": "A"
