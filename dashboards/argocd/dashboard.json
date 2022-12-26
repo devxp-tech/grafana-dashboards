@@ -2,6 +2,22 @@
   "annotations": {
     "list": [
       {
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "iconColor": "red",
+        "name": "argocd-notifications",
+        "target": {
+          "refId": "Anno",
+          "tags": [
+            "argocd-notifications"
+          ],
+          "type": "tags"
+        }
+      },
+      {
         "builtIn": 1,
         "datasource": {
           "type": "datasource",
@@ -18,22 +34,6 @@
           "type": "dashboard"
         },
         "type": "dashboard"
-      },
-      {
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
-        "enable": true,
-        "iconColor": "red",
-        "name": "argocd-notifications",
-        "target": {
-          "refId": "Anno",
-          "tags": [
-            "argocd-notifications"
-          ],
-          "type": "tags"
-        }
       }
     ]
   },
@@ -3988,7 +3988,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -4019,6 +4019,6 @@
   "timezone": "",
   "title": "ArgoCD",
   "uid": "LCAgc9rWz",
-  "version": 85,
+  "version": 86,
   "weekStart": ""
 }
