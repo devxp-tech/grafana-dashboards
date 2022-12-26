@@ -10,6 +10,7 @@
         "iconColor": "red",
         "name": "argocd-notifications",
         "target": {
+          "matchAny": true,
           "refId": "Anno",
           "tags": [
             "argocd-notifications"
