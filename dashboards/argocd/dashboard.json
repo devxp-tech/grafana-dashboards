@@ -2,23 +2,6 @@
   "annotations": {
     "list": [
       {
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
-        "enable": true,
-        "iconColor": "red",
-        "name": "argocd-notifications",
-        "target": {
-          "matchAny": true,
-          "refId": "Anno",
-          "tags": [
-            "argocd-notifications"
-          ],
-          "type": "tags"
-        }
-      },
-      {
         "builtIn": 1,
         "datasource": {
           "type": "datasource",
@@ -31,8 +14,10 @@
         "target": {
           "limit": 100,
           "matchAny": false,
-          "tags": [],
-          "type": "dashboard"
+          "tags": [
+            "argocd-notifications"
+          ],
+          "type": "tags"
         },
         "type": "dashboard"
       }
@@ -3989,7 +3974,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
